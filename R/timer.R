@@ -10,12 +10,12 @@
 #' @param pmax Maximum number of projections to evaluate (cut t if longer than pmax)
 #' @return numeric vector containing all distances
 #' @export
-#' @examples \donttest{
-#' d <- spiralData(4, 1000)
-#' t <- purrr::rerun(10, tourr::basis_random(4))
-#' idx <- scagIndex("Skinny")
+#' @examples 
+#' d <- spiralData(4, 500)
+#' t <- purrr::map(1:10, ~ tourr::basis_random(4))
+#' idx <- scagIndex("stringy")
 #' timeSequence(d, t, idx, 10)
-#' }
+
 timeSequence <- function(d, t, idx, pmax){
   i <- 1
   dfTimer <- data.frame(t= numeric(), i=numeric())
@@ -26,8 +26,8 @@ timeSequence <- function(d, t, idx, pmax){
     dProj <- d %*% pMatrix
     res <- idx(dProj)
     tictoc::toc(log=TRUE,quiet=TRUE)
-    resT <- unlist(tictoc::tic.log(format=FALSE))["toc.elapsed"] -
-      unlist(tictoc::tic.log(format=FALSE))["tic.elapsed"]
+    log <- tictoc::tic.log(format = FALSE)
+    resT <- log[[1]]$toc - log[[1]]$tic
     dfTimer <- tibble::add_row(dfTimer, t=resT, i=i)
     i <- i+1
   }

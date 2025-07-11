@@ -10,13 +10,12 @@
 #' @param n number of steps in the rotation (default = 200)
 #' @return index values for each rotation step
 #' @export
-#' @examples \donttest{
-#' d <- as.matrix(sinData(2, 1000))
-#' indexList <- list(tourr::holes(), scagIndex("Skinny"), splineIndex())
-#' indexLabels <- c("holes", "skinny", "splines2d")
-#' pRot <- profileRotation(d, indexList, indexLabels)
+#' @examples 
+#' d <- as.matrix(sinData(2, 30))
+#' indexList <- list(tourr::holes(), scagIndex("stringy"), mineIndexE("MIC"))
+#' indexLabels <- c("holes", "skinny", "mic")
+#' pRot <- profileRotation(d, indexList, indexLabels, n = 50)
 #' plotRotation(pRot)
-#' }
 profileRotation <- function(d, indexList, indexLabels, n=200){
   # initialise results storage
   resMat <- matrix(ncol = length(indexLabels)+1, nrow = n+1)
@@ -45,10 +44,10 @@ profileRotation <- function(d, indexList, indexLabels, n=200){
 plotRotation <- function(resMat){
   PPI <- colnames(resMat)
   PPI <- PPI[PPI != "alpha"] # columns are index names or angle alpha
-  resMelt <- tibble::as_tibble(resMat) %>%
-    dplyr::mutate(angle=alpha*360/(2*pi)) %>%
-    dplyr::select(-alpha) %>%
-    tidyr::gather(PPI, value, -angle) %>%
+  resMelt <- tibble::as_tibble(resMat) |>
+    dplyr::mutate(angle=alpha*360/(2*pi)) |>
+    dplyr::select(-alpha) |>
+    tidyr::gather(PPI, value, -angle) |>
     ggplot2::ggplot(ggplot2::aes(x=angle, y=value)) +
     ggplot2::facet_wrap(~PPI) +
     ggplot2::coord_polar() +

@@ -76,13 +76,12 @@ distanceToSp <- function(planes, specialPlane){
 #' @param stepSize Interpolation step size fixing the accuracy (default = 0.01)
 #' @return numeric vector containing all squint angle estimates
 #' @export
-#' @examples \donttest{
-#' data <- spiralData(4, 100)
-#' indexF <- scagIndex("Skinny")
+#' @examples
+#' data <- spiralData(4, 50)
+#' indexF <- scagIndex("stringy")
 #' cutoff <- 0.7
 #' structurePlane <- basisMatrix(3,4,4)
 #' squintAngleEstimate(data, indexF, cutoff, structurePlane, n=1)
-#' }
 squintAngleEstimate <- function(data, indexF, cutoff, structurePlane, n = 100, stepSize = 0.01){
   data <- as.matrix(data) # make sure data is in matrix format
   angles <- numeric(length = n) # collecting all individual estimates
@@ -111,14 +110,28 @@ squintAngleEstimate <- function(data, indexF, cutoff, structurePlane, n = 100, s
     allBases <- as.list(tourr::interpolate(tourHist, angle = stepSize))
     cIndex <- 0.
     j <- 1
-    while(cIndex < cutoff){
+    while(cIndex < cutoff && j <= length(allBases)) {
       cProj <- data %*% allBases[[j]]
       cIndex <- indexF(cProj)
-      j <- j+1
+      j <- j + 1
     }
+    
+    if (j > length(allBases)) {
+      warning("Did not reach cutoff; using final frame.")
+      j <- length(allBases)
+    }
+    
     cDist <- tourr::proj_dist(allBases[[j]], structurePlane)
     angles[i] <- cDist
     i <- i+1
   }
   return(angles)
 }
+
+
+
+
+
+
+
+

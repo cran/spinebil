@@ -22,7 +22,7 @@
 getTrace <- function(d, m, indexList, indexLabels){
   mX <- m[[1]]
   if(ncol(mX) != 2){
-    print("Each projection matrix must have exactly two columns!")
+    warning("Each projection matrix must have exactly two columns!")
     return(NULL)
   }
   # problem with planned tour: skipping first two entries
@@ -60,17 +60,21 @@ getTrace <- function(d, m, indexList, indexLabels){
 plotTrace <- function(resMat, rescY=TRUE){
   PPI <- colnames(resMat)
   PPI <- PPI[PPI != "t"] # columns are index names or time counter
-  resMelt <- tibble::as_tibble(resMat) %>%
-    tidyr::gather(PPI, value, -t) %>%
+  resMelt <- tibble::as_tibble(resMat) |>
+    tidyr::gather(PPI, value, -t) |>
     ggplot2::ggplot(ggplot2::aes(x=t, y=value)) +
     ggplot2::geom_line() +
-    ggplot2::facet_grid(PPI~.) +
     ggplot2::theme(legend.position="none") +
     ggplot2::xlab("Sequence of projections (t)") +
     ggplot2::ylab("PPI value")
   if (rescY) {
     resMelt <- resMelt +
+      ggplot2::facet_grid(PPI~.) +
       ggplot2::ylim(c(0,1)) # usually we want index values between 0 and 1
+  }
+  else {
+    resMelt <- resMelt +
+      ggplot2::facet_grid(PPI~., scales = "free_y")
   }
   resMelt
 }

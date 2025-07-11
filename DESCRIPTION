@@ -1,32 +1,38 @@
 Package: spinebil
 Type: Package
 Title: Investigating New Projection Pursuit Index Functions
-Version: 0.1.0
+Version: 0.1.6
 Authors@R: c(
     person("Ursula", "Laa",
-           email = "ursula.laa@monash.edu",
-           role = c("aut", "cre"),
+           email = "ursula.laa@boku.ac.at",
+           role = "aut",
            comment = c(ORCID = "https://orcid.org/0000-0002-0249-6439")),
     person("Dianne", "Cook",
            email = "dicook@monash.edu",
            role = "aut",
-           comment = c(ORCID = "https://orcid.org/0000-0002-3813-7155")))
+           comment = c(ORCID = "https://orcid.org/0000-0002-3813-7155")),
+   person("Tina", "Rashid Jafari",
+           email = "tina.rashidjafari@gmail.com",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "https://orcid.org/0009-0008-3605-5341")))
 Description: Projection pursuit is used to find interesting low-dimensional
     projections of high-dimensional data by optimizing an index over all
     possible projections. The 'spinebil' package contains methods to evaluate
-    the performance of projection pursuit index functions using tour methods,
-    as described in Laa & Cook (2019) <arXiv:1902.00181>.
+    the performance of projection pursuit index functions using tour methods. 
+    A paper describing the methods can be found at <doi:10.1007/s00180-020-00954-8>.
 License: GPL-3
 Encoding: UTF-8
-LazyData: true
-Depends: R (>= 3.5.0)
-Imports: tourr, ggplot2, tibble, stats, dplyr, tidyr, tictoc, magrittr
-Suggests: minerva, binostics, mbgraphic, testthat, purrr
-RoxygenNote: 6.1.1
+Depends: R (>= 4.1.0)
+Imports: tourr, ggplot2, tibble, stats, dplyr, tidyr, tictoc,
+        cassowaryr
+Suggests: minerva, testthat, purrr
+RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2019-08-28 03:37:28 UTC; ulaa0001
-Author: Ursula Laa [aut, cre] (<https://orcid.org/0000-0002-0249-6439>),
-  Dianne Cook [aut] (<https://orcid.org/0000-0002-3813-7155>)
-Maintainer: Ursula Laa <ursula.laa@monash.edu>
+Packaged: 2025-07-11 05:07:34 UTC; tras0007
+Author: Ursula Laa [aut] (ORCID: <https://orcid.org/0000-0002-0249-6439>),
+  Dianne Cook [aut] (ORCID: <https://orcid.org/0000-0002-3813-7155>),
+  Tina Rashid Jafari [aut, cre] (ORCID:
+    <https://orcid.org/0009-0008-3605-5341>)
+Maintainer: Tina Rashid Jafari <tina.rashidjafari@gmail.com>
 Repository: CRAN
-Date/Publication: 2019-08-28 10:50:02 UTC
+Date/Publication: 2025-07-11 08:20:02 UTC

@@ -24,12 +24,10 @@ Table of mean index values
 Compare traces with different smoothing options.
 }
 \examples{
-\donttest{
-d <- spiralData(4, 100)
+d <- spiralData(3, 30)
 tPath <- tourr::save_history(d, max_bases=2)
-tPath <- as.list(tourr::interpolate(tPath))
-idx <- scagIndex("Skinny")
-compS <- compareSmoothing(d, tPath, idx, n=5)
+tPath <- as.list(tourr::interpolate(tPath, 0.3))
+idx <- scagIndex("stringy")
+compS <- compareSmoothing(d, tPath, idx, alphaV = c(0.01, 0.05), n=2)
 plotSmoothingComparison(compS)
-}
 }
