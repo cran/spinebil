@@ -1,7 +1,7 @@
 Package: spinebil
 Type: Package
 Title: Investigating New Projection Pursuit Index Functions
-Version: 0.1.6
+Version: 1.0.4
 Authors@R: c(
     person("Ursula", "Laa",
            email = "ursula.laa@boku.ac.at",
@@ -22,17 +22,19 @@ Description: Projection pursuit is used to find interesting low-dimensional
     A paper describing the methods can be found at <doi:10.1007/s00180-020-00954-8>.
 License: GPL-3
 Encoding: UTF-8
+URL: https://uschilaa.github.io/spinebil/index.html
 Depends: R (>= 4.1.0)
 Imports: tourr, ggplot2, tibble, stats, dplyr, tidyr, tictoc,
-        cassowaryr
-Suggests: minerva, testthat, purrr
+        cassowaryr, rlang
+Suggests: minerva, testthat, purrr, furrr, future, quarto, knitr
+VignetteBuilder: quarto
 RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2025-07-11 05:07:34 UTC; tras0007
+Packaged: 2025-09-17 22:48:59 UTC; tras0007
 Author: Ursula Laa [aut] (ORCID: <https://orcid.org/0000-0002-0249-6439>),
   Dianne Cook [aut] (ORCID: <https://orcid.org/0000-0002-3813-7155>),
   Tina Rashid Jafari [aut, cre] (ORCID:
     <https://orcid.org/0009-0008-3605-5341>)
 Maintainer: Tina Rashid Jafari <tina.rashidjafari@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-07-11 08:20:02 UTC
+Date/Publication: 2025-09-17 23:10:02 UTC
